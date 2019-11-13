@@ -1,43 +1,18 @@
 const express = require('express');
+const {
+    getSalons,
+    getSalon,
+    updateSalon,
+    createSalon,
+    deleteSalon
+} = require('../controllers/salons')
 const router = express.Router();
 
-// GET route
-router.get('/', (req, res) => {
-    res.status(200).json({
-        success: true,
-        msg: 'Show all salons'
-    });
-});
+// GET & POST route
+router.route('/').get(getSalons).post(createSalon)
 
-router.get('/:id', (req, res) => {
-    res.status(200).json({
-        success: true,
-        msg: `Get salon ${req.params.id}`
-    });
-});
+// GET single, PUT & DELETE route
+router.route('/:id').get(getSalon).put(updateSalon).delete(deleteSalon);
 
-// POST route
-router.post('/', (req, res) => {
-    res.status(200).json({
-        success: true,
-        msg: 'Create new salon'
-    });
-});
-
-// UPDATE route
-router.put('/:id', (req, res) => {
-    res.status(200).json({
-        success: true,
-        msg: `Update salon ${req.params.id}`
-    });
-});
-
-// DELETE route
-router.delete('/:id', (req, res) => {
-    res.status(200).json({
-        success: true,
-        msg: `Delete salon ${req.params.id}`
-    });
-});
 
 module.exports = router;

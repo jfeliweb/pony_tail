@@ -14,7 +14,7 @@ exports.getSalons = (req, res, next) => {
 exports.getSalon = (req, res, next) => {
     res.status(200).json({
         success: true,
-        msg: `Get salon ${req.params.id}`
+        msg: 'Get a salon'
     });
 }
 

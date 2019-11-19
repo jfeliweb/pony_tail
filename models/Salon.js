@@ -4,6 +4,7 @@ const SalonSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please add a name'],
+        unique: true,
         trim: true,
         maxlength: [60, 'Name can not be more than 60 characters']
     },
@@ -32,12 +33,10 @@ const SalonSchema = new mongoose.Schema({
     location: {
         type: {
                 type: String,
-                enum: ['Point'],
-                required: true
+                enum: ['Point']
             },
             coordinates: {
                 type: [Number],
-                required: true,
                 index: '2dsphere'
             },
             formattedAddress: String,

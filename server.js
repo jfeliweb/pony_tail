@@ -17,6 +17,9 @@ const salons = require('./routes/salons');
 
 const app = express();
 
+// Body parser
+app.use(express.json());
+
 // DEV logging middleware
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));

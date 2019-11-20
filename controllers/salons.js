@@ -14,10 +14,7 @@ exports.getSalons = async (req, res, next) => {
             data: salons
         });
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            msg: err
-        });
+        next(err);
     }
     
 };
@@ -40,7 +37,7 @@ exports.getSalon = async (req, res, next) => {
     })
     } catch (err) {
         // The id format is not correct
-        next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
+        next(err);
     }
 };
 
@@ -56,10 +53,7 @@ exports.createSalon = async (req, res, next) => {
             data: salon
         });
     } catch (err) {
-        res.status(400).json({
-            success: false, 
-            msg: err
-        });
+        next(err);
     }
     
 };
@@ -75,10 +69,7 @@ exports.updateSalon = async (req, res, next) => {
         });
 
         if (!salon) {
-            return res.status(400).json({
-                success: false,
-                msg: `Salon Not Found`
-            });
+            return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
         }
 
         res.status(200).json({
@@ -87,10 +78,7 @@ exports.updateSalon = async (req, res, next) => {
         });
 
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            msg: err
-        });
+        next(err);
     }
     
 };
@@ -103,10 +91,7 @@ exports.deleteSalon = async (req, res, next) => {
         const salon = await Salon.findByIdAndDelete(req.params.id);
 
         if (!salon) {
-            return res.status(400).json({
-                success: false,
-                msg: `Salon Not Found`
-            });
+            return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
         }
 
         res.status(200).json({
@@ -115,9 +100,6 @@ exports.deleteSalon = async (req, res, next) => {
         });
 
     } catch (err) {
-        res.status(400).json({
-            success: false,
-            msg: err
-        });
+        next(err);
     }
 };

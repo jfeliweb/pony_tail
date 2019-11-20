@@ -1,3 +1,4 @@
+const ErrorResponse = require('../utils/errorResponse');
 const Salon = require('../models/Salon');
 
 // @desc    Get all salons
@@ -29,10 +30,8 @@ exports.getSalon = async (req, res, next) => {
     const salon = await Salon.findById(req.params.id);
 
     if (!salon) {
-        return res.status(400).json({
-            success: true,
-            msg: `Salon Not Found`
-        });
+        // The id format is correct but not in the database 
+        return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
     }
 
     res.status(200).json({
@@ -40,10 +39,8 @@ exports.getSalon = async (req, res, next) => {
         data: salon
     })
     } catch (err) {
-    res.status(400).json({
-        success: true,
-        msg: err
-    });
+        // The id format is not correct
+        next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
     }
 };
 

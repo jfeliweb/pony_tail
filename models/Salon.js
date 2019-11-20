@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const SalonSchema = new mongoose.Schema({
     name: {
@@ -115,5 +116,11 @@ const SalonSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+// Create Salon slug from the Name
+SalonSchema.pre('save', function () { 
+    this.slug = slugify(this.name, { lower: true });
+    next();
+ });
 
 module.exports = mongoose.model('Salon', SalonSchema);

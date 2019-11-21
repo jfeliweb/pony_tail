@@ -1,6 +1,8 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
+var geocoder = require('../utils/geocode');
 const Salon = require('../models/Salon');
+
 
 // @desc    Get all salons
 // @route   GET /api/v1/salons
@@ -77,4 +79,31 @@ exports.deleteSalon = asyncHandler(async (req, res, next) => {
             success: true,
             data: {}
         });
+});
+
+// @desc    Get salons within a radius
+// @route   GET /api/v1/salons/radius/:zipcode/:distance
+// @access  Private
+exports.getSalonInRadius = asyncHandler(async (req, res, next) => {
+    const { zipcode, distance } = req.params;
+
+    // Get latitude and longitude from geocoder
+    const loc =  await geocoder.geocode(zipcode);
+    const lat = loc[0].latitude;
+    const lng = loc[0].longitude;
+
+    // Calc radius using radians
+    // Divide dist by radius of Earth
+    // Earth Radius = 3,963 mi / 6,378 km
+    const radius = distance / 3963;
+
+    const salons = await Salon.find({
+        location: { $geoWithin: { $centerSphere: [ [ lng, lat ], radius ] } }
+    });
+    
+    res.status(200).json({
+        success: true,
+        count: salons.length,
+        data: salons
+    })
 });

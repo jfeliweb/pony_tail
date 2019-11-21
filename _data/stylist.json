@@ -1,0 +1,91 @@
+[{
+        "_id": "5d725a4a7b292f5f8ceff789",
+        "stylistName": "Sandy Miller",
+        "description": "This course will provide you with all of the essentials to become a successful frontend web developer. You will learn to master HTML, CSS and front end JavaScript, along with tools like Git, VSCode and front end frameworks like Vue",
+        "experinceLevel": 8,
+        "specialization": "Coloring",
+        "walkIn": true,
+        "salon": "5d713995b721c3bb38c1f5d0",
+        "user": "5d7a514b5d2c12c7449be045"
+    },
+    {
+        "_id": "5d725c84c4ded7bcb480eaa0",
+        "stylistName": "Jan Wrickle",
+        "description": "In this course you will learn full stack web development, first learning all about the frontend with HTML/CSS/JS/Vue and then the backend with Node.js/Express/MongoDB",
+        "experinceLevel": 2,
+        "specialization": "Pony Tails",
+        "walkIn": true,
+        "salon": "5d713995b721c3bb38c1f5d0",
+        "user": "5d7a514b5d2c12c7449be045"
+    },
+    {
+        "_id": "5d725cb9c4ded7bcb480eaa1",
+        "stylistName": "Thomas Whine",
+        "description": "In this course you will learn all about the front end with HTML, CSS and JavaScript. You will master tools like Git and Webpack and also learn C# and ASP.NET with Postgres",
+        "experinceLevel": 10,
+        "specialization": "Mens Hair Cuts",
+        "walkIn": true,
+        "salon": "5d713a66ec8f2b88b8f830b8",
+        "user": "5d7a514b5d2c12c7449be046"
+    },
+    {
+        "_id": "5d725cd2c4ded7bcb480eaa2",
+        "stylistName": "Gerry Drew",
+        "description": "In this course you will learn to create beautiful interfaces. It is a mix of design and development to create modern user experiences on both web and mobile",
+        "experinceLevel": 9,
+        "specialization": "Coloring",
+        "walkIn": true,
+        "salon": "5d713a66ec8f2b88b8f830b8",
+        "user": "5d7a514b5d2c12c7449be046"
+    },
+    {
+        "_id": "5d725ce8c4ded7bcb480eaa3",
+        "stylistName": "Grand the Don",
+        "description": "Get started building websites and web apps with HTML/CSS/JavaScript/PHP. We teach you",
+        "experinceLevel": 10,
+        "specialization": "Hair Braids",
+        "walkIn": true,
+        "salon": "5d725a037b292f5f8ceff787",
+        "user": "5c8a1d5b0190b214360dc031"
+    },
+    {
+        "_id": "5d725cfec4ded7bcb480eaa4",
+        "stylistName": "Kim Adams",
+        "description": "In this course you will learn Python for data science, machine learning and big data tools",
+        "experinceLevel": 10,
+        "specialization": "Natural Hair",
+        "walkIn": false,
+        "salon": "5d725a037b292f5f8ceff787",
+        "user": "5c8a1d5b0190b214360dc031"
+    },
+    {
+        "_id": "5d725cfec4ded7bcb480eaa5",
+        "stylistName": "Nanny Styles",
+        "description": "This course will teach you how to build high quality web applications with technologies like React, Node.js, PHP & Laravel",
+        "experinceLevel": 8,
+        "specialization": "Bobs",
+        "walkIn": false,
+        "salon": "5d725a1b7b292f5f8ceff788",
+        "user": "5c8a1d5b0190b214360dc032"
+    },
+    {
+        "_id": "5d725cfec4ded7bcb480eaa6",
+        "stylistName": "Shaq Qa",
+        "description": "This course will teach you everything you need to know about quality assurance",
+        "experinceLevel": 6,
+        "specialization": "Natural Hair",
+        "walkIn": false,
+        "salon": "5d725a1b7b292f5f8ceff788",
+        "user": "5c8a1d5b0190b214360dc032"
+    },
+    {
+        "_id": "5d725cfec4ded7bcb480eaa7",
+        "stylistName": "Ios Debion",
+        "description": "Get started building mobile applications for IOS using Swift and other tools",
+        "experinceLevel": 8,
+        "specialization": "Kids Hair",
+        "walkIn": false,
+        "salon": "5d725a1b7b292f5f8ceff788",
+        "user": "5c8a1d5b0190b214360dc032"
+    }
+]

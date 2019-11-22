@@ -10,13 +10,38 @@ const Salon = require('../models/Salon');
 exports.getSalons = asyncHandler(async (req, res, next) => {
     // Init query in it's own varible
     let query;
-    // Create a query string
-    let queryStr = JSON.stringify(req.query);
-    // Replace query string and than match it to add $
-    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
-    // Pass in the the query string via JSON to query varible
-    query = Salon.find(JSON.parse(queryStr));
+    // Copy req.query
+    const reqQuery = { ...req.query };
+
+    // Fields to be exclude so they don't get match
+    const removeFields = ['select', 'sort'];
     
+    // Loop over removeFields and delete them from reqQuery
+    removeFields.forEach(param => delete reqQuery[param]);
+
+    // Create a query string
+    let queryStr = JSON.stringify(reqQuery);
+    // Create operators ($gt, $gte, $lte, $lt, $in) Replace query string and match it
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+    // Find resource
+    query = Salon.find(JSON.parse(queryStr));
+
+    // SELECT Fields
+    if (req.query.select) {
+        // Change the comama ',' to a space ' '
+        const fields = req.query.select.split(',').join(' ');
+        query = query.select(fields);
+    }
+
+    // SORT Fields
+    if (req.query.sort) {
+        const sortBy = req.query.sort.split(',').join(' ');
+        query = query.sort(sortBy);
+    } else {
+        query =query.sort('-createdAt');
+    }
+
+    // Execute query
     const salons = await query;
 
     res.status(200).json({

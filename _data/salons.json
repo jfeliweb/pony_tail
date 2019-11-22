@@ -7,7 +7,7 @@
         "website": "http://purplehair.com",
         "phone": "(111) 111-1111",
         "email": "hello@purplehair.com",
-        "address": "123 Main Berry Rd Pembroke Pines FL 33027",
+        "address": "2501 Palm Ave Miramar FL 33025",
         "services": ["Hair Coloring", "Hair Extension", "Makeup"],
         "hairType": ["Curly", "Straight"],
         "acceptsCreditCard": true,
@@ -15,7 +15,8 @@
         "byAppointmentOnly": true,
         "freeWifi": true,
         "militaryDiscount": true,
-        "kidFriendly": true
+        "kidFriendly": true, 
+        "averageCost": 1000
     }, 
     {
         "_id": "5d713a66ec8f2b88b8f830b8",
@@ -25,7 +26,7 @@
         "website": "https://stud5.com",
         "phone": "(305) 305-3005",
         "email": "hello@stud5.com",
-        "address": "2025 NW 36th Street Pembroke Pines FL 33027",
+        "address": "1184 Alden Rd Orlando FL 32803",
         "services": ["Makeup","Hair Coloring", "Hair Extension"],
         "hairType": ["African-American", "Curly", "Straight"],
         "acceptsCreditCard": true,
@@ -33,7 +34,8 @@
         "byAppointmentOnly": false,
         "freeWifi": false,
         "militaryDiscount": true,
-        "kidFriendly": false
+        "kidFriendly": false,
+        "averageCost": 1500
     },
     {
         "_id": "5d725a037b292f5f8ceff787",
@@ -43,7 +45,7 @@
         "website": "https://stud6.com",
         "phone": "(305) 305-3055",
         "email": "hello@stud6.com",
-        "address": "2026 NW 36th Street Pembroke Pines FL 33027",
+        "address": "1471 N Palm Ave Pembroke Pines FL 33026",
         "services": ["Makeup", "Hair Coloring", "Hair Extension", "Kids Haircut", "Manicure & Pedicure"],
         "hairType": ["Asian", "African-American", "Curly", "Straight"],
         "acceptsCreditCard": true,
@@ -51,7 +53,8 @@
         "byAppointmentOnly": false,
         "freeWifi": false,
         "militaryDiscount": true,
-        "kidFriendly": false
+        "kidFriendly": false,
+        "averageCost": 1200
     },
     {
         "_id": "5d725a1b7b292f5f8ceff788",
@@ -61,7 +64,7 @@
         "website": "https://HareHairs.com",
         "phone": "(333) 333-3333",
         "email": "RogarRabbit@email.com",
-        "address": "333 Candy Lane Pembroke Pines FL 33027",
+        "address": "11618 N Kendall Dr Miami FL 33176",
         "services": ["Hair Treatment", "Womens Haircut", "Makeup", "Hair Coloring", "Hair Extension"],
         "hairType": ["Asian", "African-American", "Curly", "Straight"],
         "acceptsCreditCard": false,
@@ -69,7 +72,8 @@
         "byAppointmentOnly": false,
         "freeWifi": false,
         "militaryDiscount": false,
-        "kidFriendly": false
+        "kidFriendly": false,
+        "averageCost": 100
     },
     {
         "_id": "5d725a1b7b292f5f8ceff789",
@@ -79,7 +83,7 @@
         "website": "https://instagram.com/tam82",
         "phone": "(305) 305-4444",
         "email": "tammy@email.com",
-        "address": "30 MLK Blvd Pembroke Pines FL 33027",
+        "address": "18467 Pines Blvd Pembroke Pines FL 33029",
         "services": ["Hair Coloring", "Hair Extension"],
         "hairType": ["African-American", "Curly", "Straight"],
         "acceptsCreditCard": true,
@@ -87,6 +91,7 @@
         "byAppointmentOnly": false,
         "freeWifi": true,
         "militaryDiscount": false,
-        "kidFriendly": true
+        "kidFriendly": true,
+        "averageCost": 1000
     }
 ]

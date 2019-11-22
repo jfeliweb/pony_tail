@@ -6,8 +6,15 @@ const {
     createSalon,
     deleteSalon,
     getSalonInRadius
-} = require('../controllers/salons')
+} = require('../controllers/salons');
+
+// Include other resouce routers
+const stylistRouter = require('./stylists');
+
 const router = express.Router();
+
+// Re-route into other resource routers
+router.use('/:salonId/stylists', stylistRouter);
 
 // GET radius route
 router.route('/radius/:zipcode/:distance').get(getSalonInRadius);

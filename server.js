@@ -15,6 +15,7 @@ connectDB();
 
 // Route files
 const salons = require('./routes/salons');
+const stylists = require('./routes/stylists');
 
 const app = express();
 
@@ -28,6 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/salons', salons);
+app.use('/api/v1/stylists', stylists);
 
 // Error Handler Middleware
 app.use(errorHandler);

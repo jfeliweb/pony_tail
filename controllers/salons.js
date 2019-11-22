@@ -8,13 +8,22 @@ const Salon = require('../models/Salon');
 // @route   GET /api/v1/salons
 // @access  Public
 exports.getSalons = asyncHandler(async (req, res, next) => {
-        const salons = await Salon.find();
+    // Init query in it's own varible
+    let query;
+    // Create a query string
+    let queryStr = JSON.stringify(req.query);
+    // Replace query string and than match it to add $
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+    // Pass in the the query string via JSON to query varible
+    query = Salon.find(JSON.parse(queryStr));
+    
+    const salons = await query;
 
-        res.status(200).json({
-            success: true,
-            count: salons.length,
-            data: salons
-        });
+    res.status(200).json({
+        success: true,
+        count: salons.length,
+        data: salons
+    });
 });
 
 // @desc    Get single salons

@@ -26,7 +26,7 @@ exports.getSalons = asyncHandler(async (req, res, next) => {
     // Create operators ($gt, $gte, $lte, $lt, $in) Replace query string and match it
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
     // Find resource
-    query = Salon.find(JSON.parse(queryStr));
+    query = Salon.find(JSON.parse(queryStr)).populate('stylists');
 
     // SELECT Fields
     if (req.query.select) {
@@ -132,11 +132,13 @@ exports.updateSalon = asyncHandler(async (req, res, next) => {
 // @route   DELETE /api/v1/salons/:id
 // @access  Private
 exports.deleteSalon = asyncHandler(async (req, res, next) => {
-    const salon = await Salon.findByIdAndDelete(req.params.id);
+    const salon = await Salon.findById(req.params.id);
 
     if (!salon) {
         return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
     }
+
+    salon.remove();
 
     res.status(200).json({
         success: true,

@@ -12,9 +12,9 @@ const SalonSchema = new mongoose.Schema({
     },
     slug: String,
     description: {
-       type: String,
-           required: [true, 'Please add a description'],
-           maxlength: [500, 'Description can not be more than 500 characters']
+        type: String,
+        required: [true, 'Please add a description'],
+        maxlength: [500, 'Description can not be more than 500 characters']
     },
     website: {
         type: String,
@@ -30,23 +30,23 @@ const SalonSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-         required: [true, 'Please add salon address']
+        required: [true, 'Please add salon address']
     },
     location: {
         type: {
-                type: String,
-                enum: ['Point']
-            },
-            coordinates: {
-                type: [Number],
-                index: '2dsphere'
-            },
-            formattedAddress: String,
-            street: String,
-            city: String,
-            state: String,
-            zipcode: String,
-            country: String
+            type: String,
+            enum: ['Point']
+        },
+        coordinates: {
+            type: [Number],
+            index: '2dsphere'
+        },
+        formattedAddress: String,
+        street: String,
+        city: String,
+        state: String,
+        zipcode: String,
+        country: String
     },
     services: {
         // Array of strings
@@ -116,16 +116,25 @@ const SalonSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    toJSON: {
+        virtuals: true
+    },
+    toObject: {
+        virtuals: true
+    }
 });
 
 // Create Salon slug from the Name
-SalonSchema.pre('save', function (next) { 
-    this.slug = slugify(this.name, { lower: true });
+SalonSchema.pre('save', function (next) {
+    this.slug = slugify(this.name, {
+        lower: true
+    });
     next();
- });
+});
 
 // Geocode & create location field
-SalonSchema.pre('save', async function (next) { 
+SalonSchema.pre('save', async function (next) {
     const loc = await geocoder.geocode(this.address);
     this.location = {
         type: 'Point',
@@ -141,6 +150,23 @@ SalonSchema.pre('save', async function (next) {
     // Do not save address in Database
     this.address = undefined;
     next();
- });
+});
+
+// Cascade delete stylists when a salon is deleted
+SalonSchema.pre('remove', async function (next) {
+    console.log(`Stylists are going bye bye from salon ${this._id}`);
+    await this.model('Stylist').deleteMany({
+        salon: this._id
+    });
+    next();
+});
+
+// Reserves populate with Virtuals
+SalonSchema.virtual('stylists', {
+    ref: 'Stylist',
+    localField: '_id',
+    foreignField: 'salon',
+    justOne: false
+});
 
 module.exports = mongoose.model('Salon', SalonSchema);

@@ -14,7 +14,10 @@ exports.getStylists = asyncHandler(async (req, res, next) => {
             salon: req.params.salonId
         });
     } else {
-        query = Stylist.find();
+        query = Stylist.find().populate({
+            path: 'salon',
+            select: 'name description'
+        });
     }
 
     const stylists = await query;

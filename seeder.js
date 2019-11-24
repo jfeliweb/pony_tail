@@ -26,7 +26,7 @@ const stylist = JSON.parse(fs.readFileSync(`${__dirname}/_data/stylist.json`, 'u
 const importData = async () => {
     try {
         await Salon.create(salons);
-        await Stylist.create(stylist);
+        // await Stylist.create(stylist);
 
         console.log('Data was Imported...'.green.inverse);
         process.exit();

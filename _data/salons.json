@@ -15,8 +15,7 @@
         "byAppointmentOnly": true,
         "freeWifi": true,
         "militaryDiscount": true,
-        "kidFriendly": true, 
-        "averageCost": 1000
+        "kidFriendly": true
     }, 
     {
         "_id": "5d713a66ec8f2b88b8f830b8",
@@ -34,8 +33,7 @@
         "byAppointmentOnly": false,
         "freeWifi": false,
         "militaryDiscount": true,
-        "kidFriendly": false,
-        "averageCost": 1500
+        "kidFriendly": false
     },
     {
         "_id": "5d725a037b292f5f8ceff787",
@@ -53,8 +51,7 @@
         "byAppointmentOnly": false,
         "freeWifi": false,
         "militaryDiscount": true,
-        "kidFriendly": false,
-        "averageCost": 1200
+        "kidFriendly": false
     },
     {
         "_id": "5d725a1b7b292f5f8ceff788",
@@ -72,8 +69,7 @@
         "byAppointmentOnly": false,
         "freeWifi": false,
         "militaryDiscount": false,
-        "kidFriendly": false,
-        "averageCost": 100
+        "kidFriendly": false
     },
     {
         "_id": "5d725a1b7b292f5f8ceff789",
@@ -91,7 +87,6 @@
         "byAppointmentOnly": false,
         "freeWifi": true,
         "militaryDiscount": false,
-        "kidFriendly": true,
-        "averageCost": 1000
+        "kidFriendly": true
     }
 ]

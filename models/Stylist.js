@@ -57,8 +57,6 @@ const StylistSchema = new mongoose.Schema({
 
 // Static method to get avg of course tuitions
 StylistSchema.statics.getAverageCost = async function  (salonId) {
-    console.log('Calculating avg cost...'.blue);
-
     const obj = await this.aggregate([
         {
             $match: { salon: salonId }

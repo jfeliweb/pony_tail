@@ -9,6 +9,9 @@ const {
     salonPhotoUpload
 } = require('../controllers/salons');
 
+const Salon = require('../models/Salon');
+const advancedResults = require('../middleware/advancedResults');
+
 // Include other resouce routers
 const stylistRouter = require('./stylists');
 
@@ -24,7 +27,7 @@ router.route('/radius/:zipcode/:distance').get(getSalonInRadius);
 router.route('/:id/photo').put(salonPhotoUpload);
 
 // GET & POST route
-router.route('/').get(getSalons).post(createSalon);
+router.route('/').get(advancedResults(Salon, 'stylists'), getSalons).post(createSalon);
 
 // GET single, PUT & DELETE route
 router.route('/:id').get(getSalon).put(updateSalon).delete(deleteSalon);

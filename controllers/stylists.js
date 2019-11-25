@@ -8,26 +8,17 @@ const Salon = require('../models/Salon');
 // @route   GET /api/v1/salons/:salonId/stylists
 // @access  Public
 exports.getStylists = asyncHandler(async (req, res, next) => {
-    let query;
-
     if (req.params.salonId) {
-        query = Stylist.find({
-            salon: req.params.salonId
+        const stylists = await Stylist.find({ salon: req.params.salonId });
+
+        return res.status(200).json({
+            success: true,
+            count: stylists.length,
+            data: stylists
         });
     } else {
-        query = Stylist.find().populate({
-            path: 'salon',
-            select: 'name description'
-        });
+        res.status(200).json(res.advancedResults);
     }
-
-    const stylists = await query;
-
-    res.status(200).json({
-        success: true,
-        count: stylists.length,
-        data: stylists
-    });
 });
 
 // @desc    Get a single stylist

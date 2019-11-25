@@ -5,7 +5,8 @@ const {
     updateSalon,
     createSalon,
     deleteSalon,
-    getSalonInRadius
+    getSalonInRadius,
+    salonPhotoUpload
 } = require('../controllers/salons');
 
 // Include other resouce routers
@@ -18,6 +19,9 @@ router.use('/:salonId/stylists', stylistRouter);
 
 // GET radius route
 router.route('/radius/:zipcode/:distance').get(getSalonInRadius);
+
+// PUT upload route
+router.route('/:id/photo').put(salonPhotoUpload);
 
 // GET & POST route
 router.route('/').get(getSalons).post(createSalon);

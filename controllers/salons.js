@@ -58,14 +58,21 @@ exports.createSalon = asyncHandler(async (req, res, next) => {
 // @route   PUT /api/v1/salons/:id
 // @access  Private
 exports.updateSalon = asyncHandler(async (req, res, next) => {
-    const salon = await Salon.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-    });
+    let salon = await Salon.findById(req.params.id);
 
     if (!salon) {
         return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
     }
+
+    // User is Salon owner
+    if (salon.user.toString() != req.user.id && req.user.role !== 'admin') {
+        return next(new ErrorResponse(`User ${req.params.id} is not authorized to update this salon`, 401));
+    }
+
+    salon = await Salon.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
 
     res.status(200).json({
         success: true,
@@ -81,6 +88,11 @@ exports.deleteSalon = asyncHandler(async (req, res, next) => {
 
     if (!salon) {
         return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
+    }
+
+    // User is Salon owner
+    if (salon.user.toString() != req.user.id && req.user.role !== 'admin') {
+        return next(new ErrorResponse(`User ${req.params.id} is not authorized to delete this salon`, 401));
     }
 
     salon.remove();
@@ -135,6 +147,11 @@ exports.salonPhotoUpload = asyncHandler(async (req, res, next) => {
 
     if (!salon) {
         return next(new ErrorResponse(`Salon not found with id of ${req.params.id}`, 404));
+    }
+
+    // User is Salon owner
+    if (salon.user.toString() != req.user.id && req.user.role !== 'admin') {
+        return next(new ErrorResponse(`User ${req.params.id} is not authorized to upload images on this salon`, 401));
     }
 
     if (!req.files) {

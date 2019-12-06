@@ -35,6 +35,17 @@ exports.getSalon = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/salons
 // @access  Private
 exports.createSalon = asyncHandler(async (req, res, next) => {
+    // Add user to req.body
+    req.body.user = req.user.id;
+
+    // Check for Published Salon
+    const publishedSalon = await Salon.findOne({ user: req.user.id });
+
+    // If the user is not an admin, they can only add one Salon
+    if (publishedSalon && req.user.role != 'admin') {
+        return next(new ErrorResponse(`The user with ID ${req.user.id} has already published a salon`, 400));
+    }
+
     const salon = await Salon.create(req.body);
 
     res.status(201).json({

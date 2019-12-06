@@ -14,13 +14,25 @@ const router = express.Router({
     mergeParams: true
 });
 
+// Protect the routes from unauthorize users
+const {
+    protect
+} = require('../middleware/auth');
+
 // GET & POST route
-router.route('/').get(advancedResults(Stylist, {
+router
+.route('/')
+.get(advancedResults(Stylist, {
     path: 'salon',
     select: 'name description'
-}), getStylists).post(addStylist);
-router.route('/:id').get(getStylist).put(updateStylist).delete(deleteStylist);
+}), getStylists)
+.post(protect, addStylist);
 
+router
+.route('/:id')
+.get(getStylist)
+.put(protect, updateStylist)
+.delete(protect, deleteStylist);
 
 
 module.exports = router;

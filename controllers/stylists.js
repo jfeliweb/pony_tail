@@ -46,11 +46,17 @@ exports.getStylist = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.addStylist = asyncHandler(async (req, res, next) => {
     req.body.salon = req.params.salonId;
+    req.body.user = req.user.id;
 
     const salon = await Salon.findById(req.params.salonId);
 
     if (!salon) {
         return next(new ErrorResponse(`No salon found with the id of ${req.params.salonId}`, 404));
+    }
+
+    // User is Salon owner
+    if (salon.user.toString() != req.user.id && req.user.role !== 'admin') {
+        return next(new ErrorResponse(`User ${req.user.id} is not authorized to add stylist to salon ${salon._id}`, 401));
     }
 
     const stylist = await Stylist.create(req.body);
@@ -70,6 +76,11 @@ exports.updateStylist = asyncHandler(async (req, res, next) => {
 
     if (!stylist) {
         return next(new ErrorResponse(`No stylist found with the id of ${req.params.id}`, 404));
+    }
+
+    // User is Stylist owner
+    if (stylist.user.toString() != req.user.id && req.user.role !== 'admin') {
+        return next(new ErrorResponse(`User ${req.user.id} is not authorized to update stylist ${stylist._id}`, 401));
     }
 
     stylist = await Stylist.findByIdAndUpdate(req.params.id, req.body, {
@@ -93,6 +104,11 @@ exports.deleteStylist = asyncHandler(async (req, res, next) => {
     if (!stylist) {
         return next(new ErrorResponse(`No stylist found with the id of ${req.params.id}`, 404));
     }
+
+     // User is Stylist owner
+     if (stylist.user.toString() != req.user.id && req.user.role !== 'admin') {
+         return next(new ErrorResponse(`User ${req.user.id} is not authorized to delete stylist ${stylist._id}`, 401));
+     }
 
     await stylist.remove();
 

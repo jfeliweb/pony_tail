@@ -16,7 +16,8 @@ const router = express.Router({
 
 // Protect the routes from unauthorize users
 const {
-    protect
+    protect,
+    authorize
 } = require('../middleware/auth');
 
 // GET & POST route
@@ -26,13 +27,13 @@ router
     path: 'salon',
     select: 'name description'
 }), getStylists)
-.post(protect, addStylist);
+.post(protect, authorize('owner', 'stylist', 'admin'), addStylist);
 
 router
 .route('/:id')
 .get(getStylist)
-.put(protect, updateStylist)
-.delete(protect, deleteStylist);
+.put(protect, authorize('owner', 'stylist', 'admin'), updateStylist)
+.delete(protect, authorize('owner', 'stylist', 'admin'), deleteStylist);
 
 
 module.exports = router;

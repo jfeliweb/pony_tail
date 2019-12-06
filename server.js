@@ -18,6 +18,7 @@ connectDB();
 // Route files
 const salons = require('./routes/salons');
 const stylists = require('./routes/stylists');
+const auth = require('./routes/auth');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mount routers
 app.use('/api/v1/salons', salons);
 app.use('/api/v1/stylists', stylists);
+app.use('/api/v1/auth', auth);
 
 // Error Handler Middleware
 app.use(errorHandler);

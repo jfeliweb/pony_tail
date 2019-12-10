@@ -10,13 +10,13 @@ const {
 } = require('../controllers/salons');
 
 const Salon = require('../models/Salon');
-const advancedResults = require('../middleware/advancedResults');
 
 // Include other resouce routers
 const stylistRouter = require('./stylists');
 
 const router = express.Router();
 
+const advancedResults = require("../middleware/advancedResults");
 // Protect the routes from unauthorize users
 const { protect, authorize } = require('../middleware/auth');
 

@@ -8,12 +8,12 @@ const {
 } = require('../controllers/stylists');
 
 const Stylist = require('../models/Stylist');
-const advancedResults = require('../middleware/advancedResults');
 
 const router = express.Router({
     mergeParams: true
 });
 
+const advancedResults = require("../middleware/advancedResults");
 // Protect the routes from unauthorize users
 const {
     protect,

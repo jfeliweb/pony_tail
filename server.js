@@ -20,6 +20,7 @@ connectDB();
 const salons = require('./routes/salons');
 const stylists = require('./routes/stylists');
 const auth = require('./routes/auth');
+const users = require("./routes/users");
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1/salons', salons);
 app.use('/api/v1/stylists', stylists);
 app.use('/api/v1/auth', auth);
+app.use("/api/v1/users", users);
 
 // Error Handler Middleware
 app.use(errorHandler);

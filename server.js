@@ -8,9 +8,9 @@ const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
-// Load ENV 
+// Load ENV
 dotenv.config({
-    path: './config/config.env'
+	path: './config/config.env',
 });
 
 // Connect to Mongoose
@@ -20,7 +20,8 @@ connectDB();
 const salons = require('./routes/salons');
 const stylists = require('./routes/stylists');
 const auth = require('./routes/auth');
-const users = require("./routes/users");
+const users = require('./routes/users');
+const reviews = require('./routes/reviews');
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use(cookieParser());
 
 // DEV logging middleware
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
+	app.use(morgan('dev'));
 }
 
 // File Uploading
@@ -45,20 +46,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1/salons', salons);
 app.use('/api/v1/stylists', stylists);
 app.use('/api/v1/auth', auth);
-app.use("/api/v1/users", users);
-
+app.use('/api/v1/users', users);
+app.use('/api/v1/reviews', reviews);
 // Error Handler Middleware
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
 
 const server = app.listen(PORT, () => {
-    console.log(`Server up and running in ${process.env.NODE_ENV} mode on port ${PORT}`.green.bold.underline);
+	console.log(
+		`Server up and running in ${process.env.NODE_ENV} mode on port ${PORT}`
+			.green.bold.underline
+	);
 });
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
-    console.log(`Error: ${err.message}`.red.underline);
-    // Close server & exit process
-    server.close(() => process.exit(1));
+	console.log(`Error: ${err.message}`.red.underline);
+	// Close server & exit process
+	server.close(() => process.exit(1));
 });

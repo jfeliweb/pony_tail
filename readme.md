@@ -6,7 +6,7 @@
 
 Rename Config ENV file and set your values
 ```
-rn config/config.copy.env config/config.env
+mv config/config.copy.env config/config.env
 ```
 
 ## Install Dependencies
